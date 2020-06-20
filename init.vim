@@ -2,7 +2,6 @@
 " Nvim conf for Neovim(-q) @ Windows and Linux
 " ---------------------------------------------------------------------------
 
-
 syntax on
 
 set autoindent
@@ -16,6 +15,9 @@ set expandtab
 set number
 set relativenumber
 
+set langmenu=en_US
+language en_US
+let $LANG = 'en_US'
 
 " --- visibility stuff
 colorscheme basic-light
