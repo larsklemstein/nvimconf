@@ -15,9 +15,9 @@ set expandtab
 set number
 set relativenumber
 
-set langmenu=en_US
-language en_US
-let $LANG = 'en_US'
+set langmenu=en_US.UTF8
+language en_US.UTF8
+let $LANG = 'en_US.UTF8'
 
 " --- visibility stuff
 colorscheme basic-light
