@@ -15,6 +15,7 @@ set expandtab
 set number
 set relativenumber
 
+" --- en_US.UTF8 should work on any Linux and Windows 10 at least
 set langmenu=en_US.UTF8
 language en_US.UTF8
 let $LANG = 'en_US.UTF8'
