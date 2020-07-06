@@ -2,7 +2,6 @@
 " Nvim conf for Neovim(-q) @ Windows and Linux
 " ---------------------------------------------------------------------------
 
-syntax on
 
 set autoindent
 set hlsearch
@@ -21,9 +20,13 @@ language en_US.UTF8
 let $LANG = 'en_US.UTF8'
 
 " --- visibility stuff
-colorscheme basic-light
+set bg=light
 
-hi CursorLine term=bold cterm=NONE ctermbg=7
+" let g:gruvbox_contrast_dark="soft"
+" colorscheme gruvbox
+
+colorscheme solarized
+
 set cursorline
 
 
@@ -38,6 +41,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdtree'
+
+Plug 'ocaml/vim-ocaml', {'for' : 'ocaml'}
 
 Plug 'python-mode/python-mode', {'for' : 'python'}
 
@@ -67,3 +72,5 @@ noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
 noremap <silent> <F7> :NERDTreeToggle<CR>
 noremap <silent> <F19> :FZF<CR>
+
+syntax off

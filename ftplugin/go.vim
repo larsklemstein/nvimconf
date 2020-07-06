@@ -1,6 +1,8 @@
 setlocal tabstop=4
 setlocal noexpandtab
 " setlocal autowrite
+"
+syntax on
 
 " iabbrev <buffer> ¬ {
 " iabbrev <buffer> fP fmt.Print(
