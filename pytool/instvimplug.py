@@ -50,7 +50,8 @@ def get_checked_nvim_dir():
         nvim_dir = os.path.join(appdata_local, 'nvim')
 
     elif platform_actual == 'Linux':
-        pass
+        user_home = os.environ['HOME']
+        nvim_dir = os.path.join(user_home, '.config', 'nvim')
 
     else:
         platforms_allowed_str = ', '.join(platforms_allowed)
@@ -67,8 +68,8 @@ def get_checked_autoload_dir(nvim_dir):
     logger = logging.getLogger()
 
     dir_nvim_autoload = os.path.join(nvim_dir, 'autoload')
-    if os.path.isdir(nvim_dir):
-        logger.debug('autoload dir "%s" does exist' % nvim_dir)
+    if os.path.isdir(dir_nvim_autoload):
+        logger.debug('autoload dir "%s" does exist' % dir_nvim_autoload)
     else:
         os.mkdir(dir_nvim_autoload)
         assert os.path.isdir(dir_nvim_autoload)
