@@ -6,6 +6,8 @@
 #   at Linux or Windows.
 # ****************************************************************************
 
+# bugs and hints: lrsklemstein@gmail.com
+
 
 import logging
 import os
