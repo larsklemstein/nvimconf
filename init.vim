@@ -73,4 +73,4 @@ noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 noremap <silent> <F7> :NERDTreeToggle<CR>
 noremap <silent> <F19> :FZF<CR>
 
-syntax off
+syntax on
