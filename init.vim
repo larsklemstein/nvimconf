@@ -20,7 +20,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'dylanaraps/fff.vim'
 
 " Plug 'python-mode/python-mode', {'for' : 'python'}
 Plug 'davidhalter/jedi-vim', {'for' : 'python'}
@@ -102,10 +101,6 @@ let g:go_list_type = "quickfix"
 let g:syntastic_error_symbol = "✗"
 
 let g:NERDTreeMouseMode=3
-
-nnoremap f :F<CR>
-let g:fff#split = "30vnew"
-" let g:fff#split_direction = "nosplitleft"
 
 " *** mapping stuff ***
 let mapleader = " "
