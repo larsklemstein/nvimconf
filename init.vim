@@ -20,8 +20,12 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'dylanaraps/fff.vim'
 
 " Plug 'python-mode/python-mode', {'for' : 'python'}
+Plug 'davidhalter/jedi-vim', {'for' : 'python'}
+
+" Plug 'vim-syntastic/syntastic', {'for' : ['python', 'go']}
 
 Plug 'majutsushi/tagbar'
 
@@ -79,14 +83,29 @@ set nolist
 
 
 " *** plugin settings ***
-" turn on rope
-let g:pymode_rope = 1
 
-" turn on completion?
-let g:pymode_rope_completion = 1
+" source for the following 3 hints: https://www.diycode.cc/projects/fatih/vim-go
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_auto_jump = 1
+let g:syntastic_always_populate_loc_list = 1
+
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['python']
+let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
+let g:go_list_type = "quickfix"
+let g:syntastic_error_symbol = "✗"
 
 let g:NERDTreeMouseMode=3
 
+nnoremap f :F<CR>
+let g:fff#split = "30vnew"
+" let g:fff#split_direction = "nosplitleft"
 
 " *** mapping stuff ***
 let mapleader = " "
