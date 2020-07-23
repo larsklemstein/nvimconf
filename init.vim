@@ -14,40 +14,37 @@ endif
 " *** plugin section ***
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" Plug 'python-mode/python-mode', {'for' : 'python'}
-Plug 'davidhalter/jedi-vim', {'for' : 'python'}
-
-" Plug 'vim-syntastic/syntastic', {'for' : ['python', 'go']}
-
-Plug 'majutsushi/tagbar'
-
-Plug 'airblade/vim-gitgutter'
-
-Plug 'itchyny/lightline.vim'
-
+    Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
+    
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    
+ 	Plug 'vim-syntastic/syntastic', {'for' : ['python']}
+    
+    Plug 'majutsushi/tagbar'
+    
+    Plug 'airblade/vim-gitgutter'
+    
+    Plug 'itchyny/lightline.vim'
+    
 call plug#end()
-
-
+    
+    
 if need_to_install_plugins == 1
-    echo "Installing plugins..."
+	echo "Installing plugins..."
 	silent! PlugInstall
 		echo "Done!"
 		q
 endif
-
+    
 set autoindent
 set hlsearch
 set incsearch
-
+    
 set noshowmode
-
+    
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -102,6 +99,9 @@ let g:syntastic_error_symbol = "✗"
 
 let g:NERDTreeMouseMode=3
 
+" for jedi but does not seem to work
+" let g:virtualenv_auto_activate = 1
+
 " *** mapping stuff ***
 let mapleader = " "
 let maplocalleader = " "
@@ -127,3 +127,11 @@ highlight! GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
 set updatetime=200
+
+
+" *** completion stuff
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
