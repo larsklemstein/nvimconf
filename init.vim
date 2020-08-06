@@ -14,25 +14,23 @@ endif
 " *** plugin section ***
 call plug#begin('~/.local/share/nvim/plugged')
 
-    Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
+Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 
-	Plug 'rust-lang/rust.vim', { 'for': 'rust'}
+Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
-	Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
     
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     
-    Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 
-    Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
     
-    " Plug 'majutsushi/tagbar'
-
-	Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim'
     
-    Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
     
-    Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
     
 call plug#end()
     
@@ -140,6 +138,9 @@ set nobackup
 set nowritebackup
 set cmdheight=2
 set shortmess+=c
+
+let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls']
+
 
 " always show 
 set signcolumn=yes
