@@ -15,15 +15,20 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
     Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
+
+	Plug 'rust-lang/rust.vim', { 'for': 'rust'}
+
+	Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
     
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     
     Plug 'preservim/nerdtree'
+
     Plug 'Xuyuanp/nerdtree-git-plugin'
     
- 	Plug 'vim-syntastic/syntastic', {'for' : ['python']}
-    
-    Plug 'majutsushi/tagbar'
+    " Plug 'majutsushi/tagbar'
+
+	Plug 'liuchengxu/vista.vim'
     
     Plug 'airblade/vim-gitgutter'
     
@@ -33,10 +38,10 @@ call plug#end()
     
     
 if need_to_install_plugins == 1
-	echo "Installing plugins..."
-	silent! PlugInstall
-		echo "Done!"
-		q
+    echo "Installing plugins..."
+    silent! PlugInstall
+        echo "Done!"
+        q
 endif
     
 set autoindent
@@ -127,6 +132,17 @@ highlight! GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
 set updatetime=200
+
+
+" --- coc.nvim
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set shortmess+=c
+
+" always show 
+set signcolumn=yes
 
 
 " *** completion stuff
