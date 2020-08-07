@@ -16,38 +16,38 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 
+Plug 'rust-lang/rust.vim', { 'for': 'rust'}
+
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
+    
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
+    
 Plug 'preservim/nerdtree'
+
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" Plug 'python-mode/python-mode', {'for' : 'python'}
-Plug 'davidhalter/jedi-vim', {'for' : 'python'}
-
-" Plug 'vim-syntastic/syntastic', {'for' : ['python', 'go']}
-
-Plug 'majutsushi/tagbar'
-
+    
+Plug 'liuchengxu/vista.vim'
+    
 Plug 'airblade/vim-gitgutter'
-
+    
 Plug 'itchyny/lightline.vim'
-
+    
 call plug#end()
-
-
+    
+    
 if need_to_install_plugins == 1
     echo "Installing plugins..."
-	silent! PlugInstall
-		echo "Done!"
-		q
+    silent! PlugInstall
+        echo "Done!"
+        q
 endif
-
+    
 set autoindent
 set hlsearch
 set incsearch
-
+    
 set noshowmode
-
+    
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -102,6 +102,9 @@ let g:syntastic_error_symbol = "✗"
 
 let g:NERDTreeMouseMode=3
 
+" for jedi but does not seem to work
+" let g:virtualenv_auto_activate = 1
+
 " *** mapping stuff ***
 let mapleader = " "
 let maplocalleader = " "
@@ -113,6 +116,8 @@ noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 noremap <silent> <F7> :NERDTreeToggle<CR>
 noremap <silent> <F8> :TagbarToggle<CR>
 noremap <silent> <F19> :FZF<CR>
+
+noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
 
 let g:gitgutter_sign_added = '+'
@@ -129,3 +134,24 @@ highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NON
 set updatetime=200
 
 autocmd FileType qf wincmd J
+
+" --- coc.nvim
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set shortmess+=c
+
+let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh']
+
+
+" always show 
+set signcolumn=yes
+
+
+" *** completion stuff
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
