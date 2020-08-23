@@ -113,8 +113,8 @@ noremap <silent> <leader>c :nohlsearch<CR>
 
 noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
-noremap <silent> <F7> :NERDTreeToggle<CR>
-noremap <silent> <F8> :TagbarToggle<CR>
+noremap <silent> <F2> :NERDTreeToggle<CR>
+" noremap <silent> <F8> :TagbarToggle<CR>
 noremap <silent> <F19> :FZF<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
