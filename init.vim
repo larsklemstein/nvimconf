@@ -19,6 +19,8 @@ Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
+
+Plug 'nvie/vim-flake8', { 'for' : 'python' }
     
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     
@@ -34,6 +36,9 @@ Plug 'itchyny/lightline.vim'
     
 call plug#end()
     
+let g:flake8_show_in_gutter=1 
+autocmd FileType python map <buffer> <F2>: call flake8#Flake8()<CR>
+autocmd BufWritePost *.py call flake8#Flake8()
     
 if need_to_install_plugins == 1
     echo "Installing plugins..."
@@ -113,9 +118,8 @@ noremap <silent> <leader>c :nohlsearch<CR>
 
 noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
-noremap <silent> <F7> :NERDTreeToggle<CR>
-noremap <silent> <F8> :TagbarToggle<CR>
-noremap <silent> <F19> :FZF<CR>
+noremap <silent> <F2> :NERDTreeToggle<CR>
+noremap <silent> <F14> :FZF<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
@@ -139,11 +143,10 @@ autocmd FileType qf wincmd J
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 set shortmess+=c
 
 let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh']
-
 
 " always show 
 set signcolumn=yes
