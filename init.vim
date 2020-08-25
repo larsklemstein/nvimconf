@@ -15,27 +15,21 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
-
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
-    
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    
 Plug 'preservim/nerdtree'
-
 Plug 'Xuyuanp/nerdtree-git-plugin'
-    
 Plug 'liuchengxu/vista.vim'
-
 Plug 'majutsushi/tagbar'
-    
+Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
-    
 Plug 'itchyny/lightline.vim'
-    
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'mg979/vim-visual-multi'
+
 call plug#end()
-    
+
     
 if need_to_install_plugins == 1
     echo "Installing plugins..."
@@ -51,6 +45,7 @@ set incsearch
 set noshowmode
     
 set tabstop=4
+set softtabstop
 set shiftwidth=4
 set expandtab
 
@@ -103,6 +98,7 @@ let g:go_list_type = "quickfix"
 let g:syntastic_error_symbol = "✗"
 
 let g:NERDTreeMouseMode=3
+let g:NERDTreeMinimalUI=1
 
 " for jedi but does not seem to work
 " let g:virtualenv_auto_activate = 1
