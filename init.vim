@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
+Plug 'nvie/vim-flake8', {'for' : 'python'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -27,6 +28,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'mg979/vim-visual-multi'
+Plug 'markonm/traces.vim'
+
+" Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -111,9 +115,10 @@ noremap <silent> <leader>c :nohlsearch<CR>
 
 noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
-noremap <silent> <F2> :NERDTreeToggle<CR>
 noremap <silent> <F8> :TagbarToggle<CR>
-noremap <silent> <F19> :FZF<CR>
+
+noremap <silent> <F9> :NERDTreeToggle<CR>
+noremap <silent> <F21> :FZF<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
@@ -142,6 +147,10 @@ set shortmess+=c
 
 let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh']
 
+noremap <silent><F2> :<Plug>(coc-rename)<CR>
+
+let g:flake8_show_in_file=1
+autocmd BufWritePost *.py call flake8#Flake8()
 
 " always show 
 set signcolumn=yes
