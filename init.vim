@@ -124,8 +124,11 @@ noremap <silent> <F21> :FZF<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
-" delete everything from the current line until the last blank line
-nnoremap <C-d> :.,/\S/-1d\|nohl<CR>
+" delete everything from the current line until the last blank line and before
+nnoremap <C-d> :.,/\S/-1d\|?\S?+1,-1d\|nohl<CR>O<ESC>j
+
+
+
 
 
 
