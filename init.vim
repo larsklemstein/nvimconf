@@ -65,7 +65,9 @@ let $LANG = 'en_US.UTF8'
 
 
 " *** split and mouse behaviour ***
-set mouse=a
+
+" mouse=a causes copy+paste problems in xterm
+set mouse=r
 
 set splitbelow
 set splitright
@@ -121,6 +123,10 @@ noremap <silent> <F9> :NERDTreeToggle<CR>
 noremap <silent> <F21> :FZF<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
+
+" delete everything from the current line until the last blank line
+nnoremap <C-d> :.,/\S/-1d\|nohl<CR>
+
 
 
 let g:gitgutter_sign_added = '+'
