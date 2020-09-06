@@ -115,6 +115,8 @@ let maplocalleader = " "
 
 noremap <silent> <leader>c :nohlsearch<CR>
 
+nnoremap <silent> <leader>q :cclose<CR>
+
 noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
 noremap <silent> <F8> :TagbarToggle<CR>
@@ -127,9 +129,7 @@ noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 sp
 " delete everything from the current line until the last blank line and before
 nnoremap <C-d> :.,/\S/-1d\|?\S?+1,-1d\|nohl<CR>O<ESC>j
 
-
-
-
+nnoremap <End> :qa!<CR>
 
 
 let g:gitgutter_sign_added = '+'
