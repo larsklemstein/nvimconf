@@ -117,12 +117,30 @@ noremap <silent> <leader>c :nohlsearch<CR>
 
 nnoremap <silent> <leader>q :cclose<CR>
 
+noremap <silent> <F8> :TagbarToggle<CR>
+
 noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
-noremap <silent> <F8> :TagbarToggle<CR>
 
 noremap <silent> <F9> :NERDTreeToggle<CR>
 noremap <silent> <F21> :FZF<CR>
+
+
+" *** coc vim stuff ***
+nmap <silent>gn <Plug>(coc-rename)
+nmap <silent>gf <Plug>(coc-fix-current)
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
@@ -155,8 +173,6 @@ set cmdheight=1
 set shortmess+=c
 
 let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh']
-
-noremap <silent><F2> :<Plug>(coc-rename)<CR>
 
 let g:flake8_show_in_file=1
 autocmd BufWritePost *.py call flake8#Flake8()
