@@ -16,7 +16,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh']}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh', 'perl']}
 Plug 'nvie/vim-flake8', {'for' : 'python'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
@@ -29,8 +29,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'mg979/vim-visual-multi'
 Plug 'markonm/traces.vim'
-
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -154,7 +153,7 @@ set nowritebackup
 set cmdheight=1
 set shortmess+=c
 
-let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh']
+let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl']
 
 noremap <silent><F2> :<Plug>(coc-rename)<CR>
 
