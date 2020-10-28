@@ -171,7 +171,7 @@ set nowritebackup
 set cmdheight=1
 set shortmess+=c
 
-let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl']
+let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl','coc-yaml']
 
 let g:flake8_show_in_file=1
 autocmd BufWritePost *.py call flake8#Flake8()
