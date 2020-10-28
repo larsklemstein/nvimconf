@@ -16,7 +16,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh', 'perl']}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh', 'perl','yaml']}
 Plug 'nvie/vim-flake8', {'for' : 'python'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
@@ -154,7 +154,7 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▋'
-" ---------------------------------------------------------
+
 highlight! GitGutterAdd ctermfg=white guifg=#006000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChange ctermfg=white guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight! GitGutterDelete ctermfg=white guifg=#600000 ctermbg=NONE guibg=NONE
@@ -178,6 +178,8 @@ autocmd BufWritePost *.py call flake8#Flake8()
 
 " always show 
 set signcolumn=yes
+
+au FileType go,python,sh,rust,perl :let w:m2=matchadd('ErrorMsg', '\%>78v.\+', -1)
 
 
 " *** completion stuff
