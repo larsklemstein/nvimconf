@@ -16,7 +16,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['go', 'python', 'rust', 'sh', 'perl','yaml']}
+Plug 'neoclide/coc.nvim'
 Plug 'nvie/vim-flake8', {'for' : 'python'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
@@ -171,7 +171,7 @@ set nowritebackup
 set cmdheight=1
 set shortmess+=c
 
-let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl','coc-yaml']
+let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl','coc-yaml','coc-solargraph']
 
 let g:flake8_show_in_file=1
 autocmd BufWritePost *.py call flake8#Flake8()
