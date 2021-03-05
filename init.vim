@@ -11,34 +11,70 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 
-" *** plugin section ***
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-Plug 'neoclide/coc.nvim', { 'for': ['python', 'go']}
-Plug 'nvie/vim-flake8', {'for' : 'python'}
+
+" ------------------------------------------------------------------------------
+
+Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust']}
+
+nmap <silent>gn <Plug>(coc-rename)
+nmap <silent>gf <Plug>(coc-fix-current)
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+" ------------------------------------------------------------------------------
+
+Plug 'nvie/vim-flake8', {'for': 'python'}
+let g:flake8_show_in_file=1
+autocmd BufWritePost *.py call flake8#Flake8()
+
+" ------------------------------------------------------------------------------
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+let g:fzf_layout = { 'down': '~60%' } 
+
+" ------------------------------------------------------------------------------
+
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+let g:NERDTreeMouseMode=3
+let g:NERDTreeMinimalUI=1
+
+" ------------------------------------------------------------------------------
+
+Plug 'airblade/vim-gitgutter'
+
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▋'
+
+highlight! GitGutterAdd ctermfg=white guifg=#006000 ctermbg=NONE guibg=NONE
+highlight! GitGutterChange ctermfg=white guifg=#5F6000 ctermbg=NONE guibg=NONE
+highlight! GitGutterDelete ctermfg=white guifg=#600000 ctermbg=NONE guibg=NONE
+highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+
+" ------------------------------------------------------------------------------
+
+Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
-
-Plug 'mileszs/ack.vim'
-
-" Plug 'liuchengxu/vista.vim'
-" Plug 'Yggdroot/indentLine'
-" Plug 'dhruvasagar/vim-table-mode'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'markonm/traces.vim'
-" Plug 'mg979/vim-visual-multi'
-" Plug 'godlygeek/tabular'
-" Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -57,13 +93,17 @@ set incsearch
 set noshowmode
     
 set tabstop=4
-" set softtabstop
 set shiftwidth=4
 set expandtab
 
 set number
 set relativenumber
 set cursorline
+
+set mouse=a
+
+set splitbelow
+set splitright
 
 
 " --- en_US.UTF8 should work on any Linux and Windows 10 at least
@@ -72,16 +112,6 @@ language en_US.UTF8
 let $LANG = 'en_US.UTF8'
 
 
-" *** split and mouse behaviour ***
-
-" mouse=a causes copy+paste problems in xterm
-set mouse=r
-
-set splitbelow
-set splitright
-
-
-" *** visibility stuff ***
 set bg=dark
 let g:gruvbox_contrast_dark="soft"
 colorscheme gruvbox
@@ -111,11 +141,6 @@ let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
 let g:go_list_type = "quickfix"
 let g:syntastic_error_symbol = "✗"
 
-let g:NERDTreeMouseMode=3
-let g:NERDTreeMinimalUI=1
-
-" for jedi but does not seem to work
-" let g:virtualenv_auto_activate = 1
 
 " *** mapping stuff ***
 let mapleader = " "
@@ -134,21 +159,6 @@ noremap <silent> <F21> :NERDTreeToggle<CR>
 noremap <silent> <F9> :NERDTreeClose<CR>:FZF<CR>
 
 
-" *** coc vim stuff ***
-nmap <silent>gn <Plug>(coc-rename)
-nmap <silent>gf <Plug>(coc-fix-current)
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
@@ -157,17 +167,6 @@ nnoremap <C-d> :.,/\S/-1d\|?\S?+1,-1d\|nohl<CR>O<ESC>j
 
 nnoremap <End> :qa!<CR>
 
-
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '▔'
-let g:gitgutter_sign_modified_removed = '▋'
-
-highlight! GitGutterAdd ctermfg=white guifg=#006000 ctermbg=NONE guibg=NONE
-highlight! GitGutterChange ctermfg=white guifg=#5F6000 ctermbg=NONE guibg=NONE
-highlight! GitGutterDelete ctermfg=white guifg=#600000 ctermbg=NONE guibg=NONE
-highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
 set updatetime=200
 
@@ -182,16 +181,10 @@ set shortmess+=c
 
 let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl','coc-yaml','coc-solargraph']
 
-let g:flake8_show_in_file=1
-autocmd BufWritePost *.py call flake8#Flake8()
-
 " always show 
 set signcolumn=yes
 
 au FileType go,python,sh,rust,perl :let w:m2=matchadd('ErrorMsg', '\%>78v.\+', -1)
-
-
-" *** FZF stuff ***
 
 
 " *** completion stuff
