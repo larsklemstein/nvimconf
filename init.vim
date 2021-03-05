@@ -18,7 +18,10 @@ Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 Plug 'neoclide/coc.nvim'
 Plug 'nvie/vim-flake8', {'for' : 'python'}
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'liuchengxu/vista.vim'
@@ -180,6 +183,9 @@ autocmd BufWritePost *.py call flake8#Flake8()
 set signcolumn=yes
 
 au FileType go,python,sh,rust,perl :let w:m2=matchadd('ErrorMsg', '\%>78v.\+', -1)
+
+
+" *** FZF stuff ***
 
 
 " *** completion stuff
