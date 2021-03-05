@@ -16,7 +16,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', { 'for': ['python', 'go']}
 Plug 'nvie/vim-flake8', {'for' : 'python'}
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -24,15 +24,21 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'mg979/vim-visual-multi'
-Plug 'markonm/traces.vim'
-Plug 'tpope/vim-surround'
+
+Plug 'mileszs/ack.vim'
+
+" Plug 'liuchengxu/vista.vim'
+" Plug 'Yggdroot/indentLine'
+" Plug 'dhruvasagar/vim-table-mode'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'markonm/traces.vim'
+" Plug 'mg979/vim-visual-multi'
+" Plug 'godlygeek/tabular'
+" Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -51,7 +57,7 @@ set incsearch
 set noshowmode
     
 set tabstop=4
-set softtabstop
+" set softtabstop
 set shiftwidth=4
 set expandtab
 
@@ -124,8 +130,8 @@ noremap <silent> <F8> :TagbarToggle<CR>
 noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
 
-noremap <silent> <F9> :NERDTreeToggle<CR>
-noremap <silent> <F21> :FZF<CR>
+noremap <silent> <F21> :NERDTreeToggle<CR>
+noremap <silent> <F9> :NERDTreeClose<CR>:FZF<CR>
 
 
 " *** coc vim stuff ***

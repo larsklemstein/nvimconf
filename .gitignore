@@ -1,4 +1,4 @@
 .ropeproject
 *.swp
 autoload/*
-README.md
+ftplugin
