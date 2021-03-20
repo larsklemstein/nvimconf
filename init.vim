@@ -34,6 +34,9 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" ------------------------------------------------------------------------------
+
+Plug 'vim-test/vim-test'
 
 " ------------------------------------------------------------------------------
 
@@ -54,6 +57,14 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeMouseMode=3
 let g:NERDTreeMinimalUI=1
+
+Plug 'tpope/vim-fugitive'
+
+" GBrowse Gitlab
+Plug 'shumphrey/fugitive-gitlab.vim'
+
+" GBrowse GitHub
+Plug 'tpope/vim-rhubarb'
 
 " ------------------------------------------------------------------------------
 
