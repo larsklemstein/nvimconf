@@ -11,6 +11,10 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 
+let mapleader = " "
+let maplocalleader = " "
+
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
@@ -55,8 +59,27 @@ let g:fzf_layout = { 'down': '~60%' }
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
 let g:NERDTreeMouseMode=3
 let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=1
+
+noremap <silent> <leader>f :NERDTreeFind<CR>
+
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+	if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    	NERDTreeFind
+    	wincmd p
+	endif
+endfunction
+
 
 Plug 'tpope/vim-fugitive'
 
@@ -154,8 +177,6 @@ let g:syntastic_error_symbol = "✗"
 
 
 " *** mapping stuff ***
-let mapleader = " "
-let maplocalleader = " "
 
 noremap <silent> <leader>c :nohlsearch<CR>
 
