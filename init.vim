@@ -60,9 +60,27 @@ let g:fzf_layout = { 'down': '~60%' }
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'*',
+                \ 'Staged'    :'+',
+                \ 'Untracked' :'?',
+                \ 'Renamed'   :'r',
+                \ 'Unmerged'  :'=',
+                \ 'Deleted'   :'x',
+                \ 'Dirty'     :'!',
+                \ 'Ignored'   :'i',
+                \ 'Clean'     :'c',
+                \ 'Unknown'   :'u',
+                \ }
+
 let g:NERDTreeMouseMode=3
 let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrows=1
+let g:NERDTreeDirArrows = 0
+
+let g:NERDTreeDirArrowExpandable=">"
+let g:NERDTreeDirArrowCollapsible="v"
+let g:NERDTreeNodeDelimiter="\u00a0"
+
 
 noremap <silent> <leader>f :NERDTreeFind<CR>
 
@@ -96,8 +114,8 @@ Plug 'airblade/vim-gitgutter'
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '▔'
-let g:gitgutter_sign_modified_removed = '▋'
+let g:gitgutter_sign_removed_first_line = '1'
+let g:gitgutter_sign_modified_removed = '#'
 
 highlight! GitGutterAdd ctermfg=white guifg=#006000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChange ctermfg=white guifg=#5F6000 ctermbg=NONE guibg=NONE
@@ -111,7 +129,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
 
 call plug#end()
-
+ 
     
 if need_to_install_plugins == 1
     echo "Installing plugins..."
