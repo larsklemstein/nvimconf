@@ -61,24 +61,24 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'*',
-                \ 'Staged'    :'+',
-                \ 'Untracked' :'?',
-                \ 'Renamed'   :'r',
-                \ 'Unmerged'  :'=',
-                \ 'Deleted'   :'x',
-                \ 'Dirty'     :'!',
-                \ 'Ignored'   :'i',
-                \ 'Clean'     :'c',
-                \ 'Unknown'   :'u',
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
                 \ }
 
 let g:NERDTreeMouseMode=3
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeDirArrows = 0
 
-let g:NERDTreeDirArrowExpandable=">"
-let g:NERDTreeDirArrowCollapsible="v"
+let g:NERDTreeDirArrowExpandable="▸"
+let g:NERDTreeDirArrowCollapsible="▾"
 let g:NERDTreeNodeDelimiter="\u00a0"
 
 
@@ -98,14 +98,16 @@ function! SyncTree()
 	endif
 endfunction
 
+" ------------------------------------------------------------------------------
 
 Plug 'tpope/vim-fugitive'
 
 " GBrowse Gitlab
 Plug 'shumphrey/fugitive-gitlab.vim'
 
-" GBrowse GitHub
-Plug 'tpope/vim-rhubarb'
+" ------------------------------------------------------------------------------
+
+Plug 'christoomey/vim-tmux-navigator'
 
 " ------------------------------------------------------------------------------
 
