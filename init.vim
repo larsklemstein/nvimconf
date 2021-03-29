@@ -60,6 +60,9 @@ let g:fzf_layout = { 'down': '~60%' }
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+" show *no* brackets
+let g:NERDTreeGitStatusConcealBrackets = 1
+
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
                 \ 'Staged'    :'✚',
