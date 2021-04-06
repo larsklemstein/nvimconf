@@ -22,6 +22,11 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
 " ------------------------------------------------------------------------------
 
+Plug 'easymotion/vim-easymotion'
+map <Leader> <Plug>(easymotion-prefix)
+
+" ------------------------------------------------------------------------------
+
 Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust']}
 
 nmap <silent>gn <Plug>(coc-rename)
@@ -85,7 +90,7 @@ let g:NERDTreeDirArrowCollapsible="▾"
 let g:NERDTreeNodeDelimiter="\u00a0"
 
 
-noremap <silent> <leader>f :NERDTreeFind<CR>
+noremap <silent> <leader>l :NERDTreeFind<CR>
 
 " Check if NERDTree is open or active
 function! IsNERDTreeOpen()
