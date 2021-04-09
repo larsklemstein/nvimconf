@@ -17,7 +17,9 @@ let maplocalleader = " "
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'fatih/vim-go', { 'do': 'GoInstallBinaries', 'for': 'go'}
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'mattn/vim-goimports', { 'for': 'go' }
+
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
 " ------------------------------------------------------------------------------
@@ -55,8 +57,8 @@ autocmd BufWritePost *.py call flake8#Flake8()
 
 " ------------------------------------------------------------------------------
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 
 let g:fzf_layout = { 'down': '~60%' } 
 
@@ -90,21 +92,26 @@ let g:NERDTreeDirArrowCollapsible="▾"
 let g:NERDTreeNodeDelimiter="\u00a0"
 
 
-noremap <silent> <leader>l :NERDTreeFind<CR>
+nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
 
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+nnoremap <silent> <leader>f :NERDTreeClose<CR>:FZF<CR>
 
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-	if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    	NERDTreeFind
-    	wincmd p
-	endif
-endfunction
+nnoremap <silent> <leader>l :set nonu !<CR>:set nornu !<CR>
+
+nnoremap <silent> <leader>t :TagbarToggle<CR>
+
+
+" !!!!!!!! should be generic for all languages. Start with Go only...
+nnoremap <silent> <F9> :echom "go build..."<CR> :GoBuild<CR>
+nnoremap <silent><leader>sb :echom "go build..."<CR>: GoBuild<CR>
+
+nnoremap <silent> <F33> :echom "go run..."<CR> :GoRun<CR>
+nnoremap <silent><leader>sr :echom "go run..."<CR> :GoRun<CR>
+
+"sf == source format
+nnoremap <silent> <leader>sf :GoFmt<CR>
+
 
 " ------------------------------------------------------------------------------
 
@@ -210,13 +217,9 @@ noremap <silent> <leader>c :nohlsearch<CR>
 
 nnoremap <silent> <leader>q :cclose<CR>
 
-noremap <silent> <F8> :TagbarToggle<CR>
-
-noremap <silent> <F10> :set nonu !<CR>:set nornu !<CR>
 
 
-noremap <silent> <F21> :NERDTreeToggle<CR>
-noremap <silent> <F9> :NERDTreeClose<CR>:FZF<CR>
+
 
 
 
@@ -232,7 +235,7 @@ set updatetime=200
 
 autocmd FileType qf wincmd J
 
-" --- coc.nvim
+" --- coc.nvim related
 set hidden
 set nobackup
 set nowritebackup
