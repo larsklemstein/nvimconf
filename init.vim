@@ -18,7 +18,12 @@ let maplocalleader = " "
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'mattn/vim-goimports', { 'for': 'go' }
+
+" should by handled by coc.vim
+let g:go_code_completion_enabled = 0
+
+let g:go_test_show_name = 1
+
 
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
@@ -29,7 +34,10 @@ map <Leader> <Plug>(easymotion-prefix)
 
 " ------------------------------------------------------------------------------
 
-Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust']}
+Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml']}
+
+let g:coc_global_extensions = ['coc-json','coc-go','coc-python','coc-rls','coc-sh','coc-perl','coc-yaml','coc-solargraph']
+
 
 nmap <silent>gn <Plug>(coc-rename)
 nmap <silent>gf <Plug>(coc-fix-current)
@@ -52,17 +60,27 @@ Plug 'vim-test/vim-test'
 " ------------------------------------------------------------------------------
 
 Plug 'nvie/vim-flake8', {'for': 'python'}
+
 let g:flake8_show_in_file=1
 autocmd BufWritePost *.py call flake8#Flake8()
 
 " ------------------------------------------------------------------------------
 
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+
 
 let g:fzf_layout = { 'down': '~60%' } 
 
+nnoremap <silent><leader>z :FZF<CR>
+
+
 " ------------------------------------------------------------------------------
+"
+" *** completion stuff
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -93,20 +111,24 @@ let g:NERDTreeNodeDelimiter="\u00a0"
 
 
 nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+nnoremap <silent> <F21> :NERDTreeFind<CR>
+
 nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
+nnoremap <silent> <F9> :NERDTreeToggle<CR>
 
-nnoremap <silent> <leader>f :NERDTreeClose<CR>:FZF<CR>
+nnoremap <silent> <leader>nc :NERDTreeClose<CR>:FZF<CR>
 
-nnoremap <silent> <leader>l :set nonu !<CR>:set nornu !<CR>
+nnoremap <silent> <leader>l :set nu !<CR>:set rnu !<CR>
+nnoremap <silent> <F10> :set nu !<CR>:set rnu !<CR>
+
+nnoremap <silent> <leader>i :set list !<CR>
 
 nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> <F8> :TagbarToggle<CR>
 
 
 " !!!!!!!! should be generic for all languages. Start with Go only...
-nnoremap <silent> <F9> :echom "go build..."<CR> :GoBuild<CR>
 nnoremap <silent><leader>sb :echom "go build..."<CR>: GoBuild<CR>
-
-nnoremap <silent> <F33> :echom "go run..."<CR> :GoRun<CR>
 nnoremap <silent><leader>sr :echom "go run..."<CR> :GoRun<CR>
 
 "sf == source format
@@ -190,46 +212,12 @@ syntax on
 set listchars=space:_,trail:!,eol:$,tab:>~ list
 set nolist
 
-
-" *** plugin settings ***
-
-" source for the following 3 hints: https://www.diycode.cc/projects/fatih/vim-go
-
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_auto_jump = 1
-let g:syntastic_always_populate_loc_list = 1
-
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['python']
-let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
-let g:go_list_type = "quickfix"
-let g:syntastic_error_symbol = "✗"
-
-
-" *** mapping stuff ***
-
-noremap <silent> <leader>c :nohlsearch<CR>
-
-nnoremap <silent> <leader>q :cclose<CR>
-
-
-
-
-
-
+noremap <silent> <leader>d :nohlsearch \| cclose \| lclose \| echom ""<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
-" delete everything from the current line until the last blank line and before
-nnoremap <C-d> :.,/\S/-1d\|?\S?+1,-1d\|nohl<CR>O<ESC>j
-
 nnoremap <End> :qa!<CR>
-
+nnoremap <silent><leader>q :qa<CR>
 
 set updatetime=200
 
@@ -242,17 +230,11 @@ set nowritebackup
 set cmdheight=1
 set shortmess+=c
 
-let g:coc_global_extensions = ['coc-json', 'coc-go', 'coc-python', 'coc-rls', 'coc-sh', 'coc-perl','coc-yaml','coc-solargraph']
 
 " always show 
 set signcolumn=yes
 
 au FileType go,python,sh,rust,perl :let w:m2=matchadd('ErrorMsg', '\%>78v.\+', -1)
 
-
-" *** completion stuff
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
