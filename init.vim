@@ -14,8 +14,11 @@ endif
 let mapleader = " "
 let maplocalleader = " "
 
-
 call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'nikvdp/neomux'
+autocmd TermOpen * setlocal nonumber norelativenumber nolist nocursorline signcolumn=no
+autocmd BufWinEnter,WinEnter term://* startinsert
 
 Plug 'fatih/vim-go', { 'for': 'go' }
 
@@ -28,6 +31,8 @@ let g:go_test_show_name = 1
 Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
 " ------------------------------------------------------------------------------
+
+Plug 'mg979/vim-visual-multi'
 
 Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
@@ -109,6 +114,11 @@ let g:NERDTreeDirArrowExpandable="▸"
 let g:NERDTreeDirArrowCollapsible="▾"
 let g:NERDTreeNodeDelimiter="\u00a0"
 
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
+let NERDTreeWinSize = 30
+
+let NERDTreeHighlightCursorline=0
+let g:NERDTreeStatusline = '%#NonText#'
 
 nnoremap <silent> <leader>nf :NERDTreeFind<CR>
 nnoremap <silent> <F21> :NERDTreeFind<CR>
@@ -163,7 +173,17 @@ highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NON
 
 " ------------------------------------------------------------------------------
 
+
+
 Plug 'itchyny/lightline.vim'
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+\ }
+
+"     \ 'colorscheme': 'solarized',
+"     \ 'colorscheme': 'Tomorrow_Night',
+
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
 
@@ -189,7 +209,15 @@ set expandtab
 
 set number
 set relativenumber
+
 set cursorline
+
+augroup CursorLine
+    au!
+	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+	au WinLeave * setlocal nocursorline
+augroup END
+
 
 set mouse=a
 
