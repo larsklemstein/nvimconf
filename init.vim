@@ -14,6 +14,11 @@ endif
 let mapleader = " "
 let maplocalleader = " "
 
+
+" auto completion should be handled by coc.vim instead
+let g:ale_disable_lsp = 1
+
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'nikvdp/neomux'
@@ -22,7 +27,7 @@ autocmd BufWinEnter,WinEnter term://* startinsert
 
 Plug 'fatih/vim-go', { 'for': 'go' }
 
-" should by handled by coc.vim
+" auto completion should be handled by coc.vim instead
 let g:go_code_completion_enabled = 0
 
 let g:go_test_show_name = 1
@@ -38,6 +43,15 @@ Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
 
 " ------------------------------------------------------------------------------
+
+
+Plug 'dense-analysis/ale', { 'for': ['python', 'go', 'rust']}
+
+let g:ale_sign_column_always = 1
+
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+
 
 Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml']}
 
@@ -64,10 +78,12 @@ Plug 'vim-test/vim-test'
 
 " ------------------------------------------------------------------------------
 
-Plug 'nvie/vim-flake8', {'for': 'python'}
+"Plug 'nvie/vim-flake8', {'for': 'python'}
 
-let g:flake8_show_in_file=1
-autocmd BufWritePost *.py call flake8#Flake8()
+"let g:flake8_show_in_file=1
+"autocmd BufWritePost *.py call flake8#Flake8()
+
+
 
 " ------------------------------------------------------------------------------
 
@@ -244,8 +260,12 @@ noremap <silent> <leader>d :nohlsearch \| cclose \| lclose \| echom ""<CR>
 
 noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 space indention"<CR>
 
+
+" This is the end, my friend...
 nnoremap <End> :qa!<CR>
-nnoremap <silent><leader>q :qa<CR>
+nnoremap <silent><leader>qq :qa<CR>
+nnoremap <silent><leader>qw :q<CR>
+
 
 set updatetime=200
 

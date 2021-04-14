@@ -1,1 +1,4 @@
-{"rust-analyzer.server.path": "/home/lars/.local/bin/rust-analyzer"} 
+{
+    "rust-analyzer.server.path": "/home/lars/.local/bin/rust-analyzer",
+    "diagnostic.displayByAle": true
+}
