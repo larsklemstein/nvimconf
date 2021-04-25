@@ -55,10 +55,14 @@ let g:ale_sign_warning = '.'
 let g:ale_linters = {'python': ['flake8']}
 
 
-Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml']}
+Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml''vimscript']}
 
-let g:coc_global_extensions = ['coc-json','coc-go','coc-python','coc-rls','coc-sh','coc-perl','coc-yaml','coc-solargraph']
+let g:coc_global_extensions = ['coc-json','coc-go','coc-python','coc-rls','coc-sh','coc-perl','coc-yaml','coc-vimlsp']
 
+let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help'
+      \]
 
 nmap <silent>gn <Plug>(coc-rename)
 nmap <silent>gf <Plug>(coc-fix-current)
@@ -151,8 +155,9 @@ nnoremap <silent> <F10> :set nu !<CR>:set rnu !<CR>
 
 nnoremap <silent> <leader>i :set list !<CR>
 
-nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>tb :TagbarToggle<CR>
 nnoremap <silent> <F8> :TagbarToggle<CR>
+nnoremap <silent> <leader>tu :TagbarForceUpdate<CR>
 
 
 " !!!!!!!! should be generic for all languages. Start with Go only...
@@ -265,8 +270,6 @@ noremap <silent> <C-t> :%!expand -t4<CR>:w<CR>:echom "replaced tabs through 4 sp
 
 " This is the end, my friend...
 nnoremap <End> :qa!<CR>
-nnoremap <silent><leader>qq :qa<CR>
-nnoremap <silent><leader>qw :q<CR>
 
 
 set updatetime=200
