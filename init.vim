@@ -12,7 +12,7 @@ endif
 
 
 let mapleader = " "
-let maplocalleader = " "
+let maplocalleader = "-"
 
 
 " auto completion should be handled by coc.vim instead
@@ -37,10 +37,21 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust'}
 
 " ------------------------------------------------------------------------------
 
-Plug 'mg979/vim-visual-multi'
+" Plug 'mg979/vim-visual-multi'
 
 Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
+
+
+" ------------------------------------------------------------------------------
+
+Plug 'airblade/vim-rooter'
+
+
+
+" ------------------------------------------------------------------------------
+
+Plug 'christoomey/vim-tmux-navigator'
 
 " ------------------------------------------------------------------------------
 
@@ -55,7 +66,7 @@ let g:ale_sign_warning = '.'
 let g:ale_linters = {'python': ['flake8']}
 
 
-Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml''vimscript']}
+Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml', 'vimscript']}
 
 let g:coc_global_extensions = ['coc-json','coc-go','coc-python','coc-rls','coc-sh','coc-perl','coc-yaml','coc-vimlsp']
 
@@ -64,19 +75,19 @@ let g:markdown_fenced_languages = [
       \ 'help'
       \]
 
-nmap <silent>gn <Plug>(coc-rename)
-nmap <silent>gf <Plug>(coc-fix-current)
+nnoremap <silent>gn <Plug>(coc-rename)
+nnoremap <silent>gf <Plug>(coc-fix-current)
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 " ------------------------------------------------------------------------------
 
@@ -211,7 +222,11 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
 
 call plug#end()
+" <<<<<<<<<<<<<<<<<<<<<<<<<<<
  
+if empty(argv())
+	au VimEnter * NERDTree
+endif
     
 if need_to_install_plugins == 1
     echo "Installing plugins..."
