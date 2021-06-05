@@ -14,6 +14,7 @@ endif
 let mapleader = " "
 let maplocalleader = "-"
 
+set guicursor=
 
 " auto completion should be handled by coc.vim instead
 let g:ale_disable_lsp = 1
@@ -63,7 +64,7 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 
-let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters = {'python': ['pylint']}
 
 
 Plug 'neoclide/coc.nvim', { 'for': ['python', 'go', 'rust', 'json', 'yaml', 'vimscript']}
@@ -110,8 +111,14 @@ Plug 'junegunn/fzf'
 
 let g:fzf_layout = { 'down': '~60%' } 
 
-nnoremap <silent><leader>z :FZF<CR>
+" nnoremap <silent><leader>z :NERDTreeClose \| FZF<CR>
 
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'adelarsq/vim-devicons-emoji'
+
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+
+nnoremap <leader>c <cmd>CHADopen<cr>
 
 " ------------------------------------------------------------------------------
 "
@@ -120,54 +127,13 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
 
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" show *no* brackets
-let g:NERDTreeGitStatusConcealBrackets = 1
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
-
-let g:NERDTreeMouseMode=3
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrows = 0
-
-let g:NERDTreeDirArrowExpandable="▸"
-let g:NERDTreeDirArrowCollapsible="▾"
-let g:NERDTreeNodeDelimiter="\u00a0"
-
-let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
-let NERDTreeWinSize = 30
-
-let NERDTreeHighlightCursorline=0
-let g:NERDTreeStatusline = '%#NonText#'
-
-nnoremap <silent> <leader>nf :NERDTreeFind<CR>
-nnoremap <silent> <F21> :NERDTreeFind<CR>
-
-nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
-nnoremap <silent> <F9> :NERDTreeToggle<CR>
-
-nnoremap <silent> <leader>nc :NERDTreeClose<CR>:FZF<CR>
+Plug 'ms-jpq/chadtree'
 
 nnoremap <silent> <leader>l :set nu !<CR>:set rnu !<CR>
-nnoremap <silent> <F10> :set nu !<CR>:set rnu !<CR>
 
 nnoremap <silent> <leader>i :set list !<CR>
 
 nnoremap <silent> <leader>tb :TagbarToggle<CR>
-nnoremap <silent> <F8> :TagbarToggle<CR>
 nnoremap <silent> <leader>tu :TagbarForceUpdate<CR>
 
 
@@ -224,9 +190,9 @@ Plug 'tpope/vim-commentary'
 call plug#end()
 " <<<<<<<<<<<<<<<<<<<<<<<<<<<
  
-if empty(argv())
-	au VimEnter * NERDTree
-endif
+"if empty(argv())
+"	au VimEnter * NERDTree
+"endif
     
 if need_to_install_plugins == 1
     echo "Installing plugins..."
